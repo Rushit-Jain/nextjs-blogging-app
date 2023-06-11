@@ -3,7 +3,7 @@ import PostListItem from "./PostListItem";
 import classes from "./PostsList.module.css";
 
 function PostList(props) {
-  const [data, setData] = useState([1, 2, 3, 4]);
+  const [data, setData] = useState([]);
   useEffect(() => {
     fetch("/api/posts")
       .then((res) => res.json())
