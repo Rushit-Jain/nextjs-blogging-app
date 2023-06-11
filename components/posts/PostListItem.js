@@ -9,7 +9,6 @@ function PostListItem(props) {
       href={`/posts/${props.id}`}
       key={props.id}
     >
-      {/* <a > */}
       <div className={classes.card}>
         <div className="row">
           <div className="col-12">
@@ -22,7 +21,6 @@ function PostListItem(props) {
           </div>
         </div>
       </div>
-      {/* </a> */}
     </Link>
   );
 }
