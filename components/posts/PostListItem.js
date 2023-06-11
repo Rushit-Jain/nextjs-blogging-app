@@ -6,7 +6,7 @@ function PostListItem(props) {
   return (
     <Link
       className={classes.displayContents}
-      href={`/posts/${props.slug}`}
+      href={`/${props.slug}`}
       key={props.id}
     >
       <div className={classes.card}>

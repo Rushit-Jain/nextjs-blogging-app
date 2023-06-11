@@ -28,25 +28,13 @@ function Navigation() {
           <li className="nav-item">
             <Link
               className={
-                router.pathname === "/"
+                router.pathname === "/" || router.pathname === "/[slug]"
                   ? classes.customActive + " nav-link " + classes.customNavLink
                   : " nav-link " + classes.customNavLink
               }
               href="/"
             >
               Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              className={
-                router.pathname === "/posts"
-                  ? classes.customActive + " nav-link " + classes.customNavLink
-                  : " nav-link " + classes.customNavLink
-              }
-              href="/posts"
-            >
-              Read Posts
             </Link>
           </li>
           <li className="nav-item">

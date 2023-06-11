@@ -1,6 +1,6 @@
-import PostList from "@/components/posts/PostsList";
+import PostList from "../components/posts/PostsList";
 
-function PopularPosts() {
+function HomePage() {
   return (
     <div>
       <PostList />
@@ -8,4 +8,4 @@ function PopularPosts() {
   );
 }
 
-export default PopularPosts;
+export default HomePage;
