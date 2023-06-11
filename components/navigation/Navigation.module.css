@@ -1,0 +1,18 @@
+.customNavbar {
+  background-color: purple;
+  border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+  color: white;
+}
+
+.customNavLink {
+  color: white;
+  padding: 0.25rem 0.5rem;
+  text-decoration: none;
+  margin-right: 0.5rem;
+}
+
+.customActive {
+  text-decoration: underline;
+}
