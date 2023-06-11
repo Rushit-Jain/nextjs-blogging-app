@@ -1,7 +1,9 @@
+import PostList from "@/components/posts/PostsList";
+
 function PopularPosts() {
   return (
     <div>
-      <h1>Popular Posts</h1>
+      <PostList />
     </div>
   );
 }

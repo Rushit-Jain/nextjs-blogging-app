@@ -14,5 +14,7 @@
 }
 
 .customActive {
-  text-decoration: underline;
+  color: #f2e58f;
+  border: 1px solid #f2e58f;
+  border-radius: 10px;
 }
