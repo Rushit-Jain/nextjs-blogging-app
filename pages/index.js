@@ -21,16 +21,9 @@ export async function getStaticProps(context) {
   data = data.sort((a, b) => {
     return b.numberOfViews - a.numberOfViews;
   });
-  let posts = [
-    data[0],
-    data[1],
-    data[2],
-    data[3],
-    data[4],
-    data[5],
-    data[6],
-    data[7],
-  ];
+  let posts = [];
+  if (data.length > 8) posts = data.slice(0, 8);
+  else posts = data;
   return {
     props: { posts },
   };

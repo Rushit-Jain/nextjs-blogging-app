@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Alpha",
+        "email": "alpha@gmail.com",
+        "password": "alpha123",
+        "authoredPosts": []
+    },
+    {
+        "name": "Beta",
+        "email": "beta@gmail.com",
+        "password": "beta435",
+        "authoredPosts": []
+    },
+    {
+        "name": "Gamma",
+        "email": "gamma@gmail.com",
+        "password": "gamma5643",
+        "authoredPosts": []
+    },
+    {
+        "name": "Delta",
+        "email": "delta@gmail.com",
+        "password": "delta76485",
+        "authoredPosts": []
+    },
+    {
+        "name": "Pi",
+        "email": "pi@gmail.com",
+        "password": "pi7684543",
+        "authoredPosts": []
+    }
+]
