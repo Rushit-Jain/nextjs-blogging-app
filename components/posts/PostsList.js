@@ -15,12 +15,13 @@ function PostList(props) {
 
   let mappedData = posts.map((post) => {
     return (
-      <div key={post.id} className="col-lg-3 col-12">
+      <div key={post._id} className="col-lg-3 col-12">
         <PostListItem
           title={post.title}
           description={post.description}
-          id={post.id}
+          _id={post._id}
           slug={post.slug}
+          numberOfViews={post.numberOfViews}
         />
       </div>
     );

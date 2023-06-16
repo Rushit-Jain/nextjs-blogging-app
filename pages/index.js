@@ -23,8 +23,14 @@ export async function getStaticProps(context) {
   }
   try {
     let data = await db.getRecords(client, "posts", {}, { numberOfViews: -1 });
-    data.forEach((element) => {
-      element._id = element._id.toString();
+    data = data.map((element) => {
+      let postData = {};
+      postData._id = element._id.toString();
+      postData.title = element.title;
+      postData.description = element.description;
+      postData.slug = element.slug;
+      postData.numberOfViews = element.numberOfViews;
+      return postData;
     });
     let posts;
     if (data.length > 8) posts = data.slice(0, 8);
