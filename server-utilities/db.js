@@ -17,3 +17,17 @@ export async function insertRecords(client, collection, records) {
     throw new Error(error.message);
   }
 }
+
+export async function getRecords(client, collection, query, sort) {
+  try {
+    const result = await client
+      .db()
+      .collection(collection)
+      .find(query)
+      .sort(sort)
+      .toArray();
+    return result;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
