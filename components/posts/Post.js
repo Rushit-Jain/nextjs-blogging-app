@@ -1,4 +1,5 @@
 /*TO DO
+1. Limit functionality to logged in users
 2. Add upvote and downvote functionality (server-side)
 3. Add view functionality (send request to server to increment numberOfViews every time a user visits the page)
 4. Add comment functionality (open a modal with a textarea and anonymity boolean to add a comment)
