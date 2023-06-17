@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 const db = require("../server-utilities/db");
 
 import Post from "../components/posts/Post";
+import { ObjectId } from "mongodb";
 
 function PostPage(props) {
   const router = useRouter();
@@ -26,9 +27,11 @@ export async function getServerSideProps(context) {
     post = post[0];
     post._id = post._id.toString();
     if (!post.isAnonymous) {
+      console.log(post.authorId);
       let user = await db.getRecords(client, "users", {
-        _id: post.authorId,
+        _id: new ObjectId(post.authorId),
       });
+      console.log(user);
       user = user[0];
       post.authorName = user.name;
       post.authorEmail = user.email;
@@ -36,6 +39,7 @@ export async function getServerSideProps(context) {
       delete post.authorId;
     }
   } catch (error) {
+    console.log(error);
     return {
       props: {
         post: {},

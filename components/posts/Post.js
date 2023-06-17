@@ -31,6 +31,17 @@ function Post(props) {
         >
           {post.content}
         </ReactMarkdown>
+        {post.authorName && (
+          <>
+            <div className="row">~By {post.authorName}</div>
+            <div className="row">{post.authorEmail}</div>
+          </>
+        )}
+        {!post.authorName && (
+          <>
+            <div className="row">~By Anonymous</div>
+          </>
+        )}
       </div>
     </div>
   );
