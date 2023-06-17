@@ -30,6 +30,8 @@ function Post(props) {
   const [upvoteCount, setUpvoteCount] = useState(post.upvoters.length);
   const [downvoteCount, setDownvoteCount] = useState(post.downvoters.length);
 
+  //send req to server to increment numberOfViews here
+
   function handleUpvoteClick() {
     setIsUpvoted(() => {
       let upvoted = !isUpvoted;
@@ -75,7 +77,7 @@ function Post(props) {
             <span>
               <VisibilityOutlinedIcon />
               &nbsp;
-              {post.numberOfViews}
+              {post.numberOfViews + 1}
             </span>
             {/* &nbsp;&nbsp; */}
           </div>
