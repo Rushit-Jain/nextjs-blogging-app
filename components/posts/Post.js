@@ -1,6 +1,5 @@
 /*TO DO
-1. Change buttons icons according to if user has upvoted or downvoted
-2. Add upvote and downvote functionality
+2. Add upvote and downvote functionality (server-side)
 3. Add view functionality (send request to server to increment numberOfViews every time a user visits the page)
 4. Add comment functionality (open a modal with a textarea and anonymity boolean to add a comment)
 5. Add comment list functionality
@@ -79,7 +78,6 @@ function Post(props) {
               &nbsp;
               {post.numberOfViews + 1}
             </span>
-            {/* &nbsp;&nbsp; */}
           </div>
           <div className={"col-lg-6 col-12 " + classes.voteButtons}>
             <span>
