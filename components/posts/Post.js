@@ -1,38 +1,46 @@
+/*TO DO
+1. Change buttons icons according to if user has upvoted or downvoted
+2. Add upvote and downvote functionality
+3. Add view functionality (send request to server to increment numberOfViews every time a user visits the page)
+4. Add comment functionality (open a modal with a textarea and anonymity boolean to add a comment)
+5. Add comment list functionality
+*/
+
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import classes from "./Post.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEye,
-  faThumbsDown,
-  faThumbsUp,
-} from "@fortawesome/free-regular-svg-icons";
+import { IconButton } from "@mui/material";
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
+import ThumbDownOffAlt from "@mui/icons-material/ThumbDownOffAlt";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import AddCommentOutlinedIcon from "@mui/icons-material/AddCommentOutlined";
 
 function Post(props) {
   const post = props.post;
 
   return (
     <div className="container">
-      <div className="row"></div>
       <div className={"row " + classes.card}>
         <h1 className={classes.title}>{post.title}</h1>
         <div className="row">
           <div className="col-lg-6 col-12">
             <span>
-              <FontAwesomeIcon icon={faEye} />
+              <VisibilityOutlinedIcon />
               &nbsp;
               {post.numberOfViews}
             </span>
             &nbsp;&nbsp;
             <span>
-              <FontAwesomeIcon icon={faThumbsUp} />
+              <ThumbUpAltIcon />
               &nbsp;
               {post.upvoters.length}
             </span>
             &nbsp;&nbsp;
             <span>
-              <FontAwesomeIcon icon={faThumbsDown} />
+              <ThumbDownAltIcon />
               &nbsp;
               {post.downvoters.length}
             </span>
@@ -73,6 +81,19 @@ function Post(props) {
             <div className="row">~By Anonymous</div>
           </>
         )}
+        <div className="row mt-3">
+          <div className="col-lg-6 col-12">
+            <IconButton aria-label="fingerprint">
+              <AddCommentOutlinedIcon />
+            </IconButton>
+            <IconButton aria-label="fingerprint" color="success">
+              <ThumbUpOffAltIcon />
+            </IconButton>
+            <IconButton aria-label="fingerprint" color="error">
+              <ThumbDownOffAlt />
+            </IconButton>
+          </div>
+        </div>
       </div>
     </div>
   );
