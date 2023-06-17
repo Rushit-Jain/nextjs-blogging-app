@@ -6,43 +6,102 @@
 5. Add comment list functionality
 */
 
+import { useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import classes from "./Post.module.css";
-import { IconButton } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
-import ThumbDownOffAlt from "@mui/icons-material/ThumbDownOffAlt";
+import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import AddCommentOutlinedIcon from "@mui/icons-material/AddCommentOutlined";
 
 function Post(props) {
   const post = props.post;
+  const [isUpvoted, setIsUpvoted] = useState(
+    post.upvoters.includes("REPLACE_USER_ID")
+  );
+  const [isDownvoted, setIsDownvoted] = useState(
+    post.upvoters.includes("REPLACE_USER_ID")
+  );
+  const [upvoteCount, setUpvoteCount] = useState(post.upvoters.length);
+  const [downvoteCount, setDownvoteCount] = useState(post.downvoters.length);
+
+  function handleUpvoteClick() {
+    setIsUpvoted(() => {
+      let upvoted = !isUpvoted;
+      if (upvoted) {
+        if (isDownvoted) {
+          setDownvoteCount((prevCount) => prevCount - 1);
+          //send req to reduce downvote
+        }
+        setIsDownvoted(false);
+        setUpvoteCount((prevCount) => prevCount + 1);
+      } else {
+        setUpvoteCount((prevCount) => prevCount - 1);
+      }
+      return upvoted;
+    });
+    //send req to server to add upvote here
+  }
+
+  function handleDownvoteClick() {
+    setIsDownvoted(() => {
+      let downvoted = !isDownvoted;
+      if (downvoted) {
+        if (isUpvoted) {
+          setUpvoteCount((prevCount) => prevCount - 1);
+          //send req to reduce upvote
+        }
+        setIsUpvoted(false);
+        setDownvoteCount((prevCount) => prevCount + 1);
+      } else {
+        setDownvoteCount((prevCount) => prevCount - 1);
+      }
+      return !isDownvoted;
+    });
+    //send req to server to add downvote here
+  }
 
   return (
     <div className="container">
       <div className={"row " + classes.card}>
         <h1 className={classes.title}>{post.title}</h1>
         <div className="row">
-          <div className="col-lg-6 col-12">
+          <div className={"col-lg-6 col-12 " + classes.viewSpan}>
             <span>
               <VisibilityOutlinedIcon />
               &nbsp;
               {post.numberOfViews}
             </span>
-            &nbsp;&nbsp;
+            {/* &nbsp;&nbsp; */}
+          </div>
+          <div className={"col-lg-6 col-12 " + classes.voteButtons}>
             <span>
-              <ThumbUpAltIcon />
+              <IconButton
+                aria-label="fingerprint"
+                color="success"
+                onClick={handleUpvoteClick}
+              >
+                {isUpvoted ? <ThumbUpAltIcon /> : <ThumbUpOffAltIcon />}
+              </IconButton>
               &nbsp;
-              {post.upvoters.length}
+              {upvoteCount}
             </span>
             &nbsp;&nbsp;
             <span>
-              <ThumbDownAltIcon />
+              <IconButton
+                aria-label="fingerprint"
+                color="error"
+                onClick={handleDownvoteClick}
+              >
+                {isDownvoted ? <ThumbDownAltIcon /> : <ThumbDownOffAltIcon />}
+              </IconButton>
               &nbsp;
-              {post.downvoters.length}
+              {downvoteCount}
             </span>
           </div>
         </div>
@@ -83,15 +142,13 @@ function Post(props) {
         )}
         <div className="row mt-3">
           <div className="col-lg-6 col-12">
-            <IconButton aria-label="fingerprint">
-              <AddCommentOutlinedIcon />
-            </IconButton>
-            <IconButton aria-label="fingerprint" color="success">
-              <ThumbUpOffAltIcon />
-            </IconButton>
-            <IconButton aria-label="fingerprint" color="error">
-              <ThumbDownOffAlt />
-            </IconButton>
+            <Button
+              variant="contained"
+              startIcon={<AddCommentOutlinedIcon />}
+              color="secondary"
+            >
+              Comment
+            </Button>
           </div>
         </div>
       </div>
