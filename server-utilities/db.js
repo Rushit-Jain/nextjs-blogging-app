@@ -31,3 +31,17 @@ export async function getRecords(client, collection, query, sort) {
     throw new Error(error.message);
   }
 }
+
+export async function getRecord(client, collection, query) {
+  try {
+    const result = await client
+      .db()
+      .collection(collection)
+      .find(query)
+      .sort(sort)
+      .toArray();
+    return result;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
